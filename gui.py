@@ -37,7 +37,14 @@ class AccountManagementApp(QWidget):
         self.create_account_layout.addWidget(self.create_account_button)
 
         self.setLayout(self.create_account_layout)
+       
+        self.create_account_button.clicked.connect()
 
+            def create_account(self):
+        # Get account number and type from input fields
+        account_number = self.account_number_input.text()
+        account_type = self.account_type_input.text()
+       
    
 
     
