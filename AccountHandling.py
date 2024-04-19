@@ -9,36 +9,40 @@ from PyQt5.QtWidgets import (
     QPushButton,
     QMessageBox,
 )
+from AccountManagement.CreateAccount import CreateAccountWidget
+from AccountManagement.UpdateAccount import  UpdateAccountWidget
+from AccountManagement.DeleteAccount import DeleteAccountWidget
 import sys
 
 
 
-class AccountManagementApp(QWidget):
+class AccountWindow(QWidget):
+    go_back = pyqtSignal()
+    create_account_signal = pyqtSignal()
+    update_account_signal = pyqtSignal()
+    delete_account_signal = pyqtSignal()
+    edit_account_signal = pyqtSignal()
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Account Management")
+        self.setWindowTitle("Account Management System")
         self.setGeometry(100, 100, 400, 300)
 
-        # Initialize GUI components
-        self.create_account_label = QLabel("Create New Account:")
-        self.account_number_label = QLabel("Account Number:")
-        self.account_number_input = QLineEdit()
-        self.account_type_label = QLabel("Account Type:")
-        self.account_type_input = QLineEdit()
-        self.create_account_button = QPushButton("Create Account")
+        
+        self.button_layout = QVBoxLayout()
 
-        # Layout for create account form
-        self.create_account_layout = QVBoxLayout()
-        self.create_account_layout.addWidget(self.create_account_label)
-        self.create_account_layout.addWidget(self.account_number_label)
-        self.create_account_layout.addWidget(self.account_number_input)
-        self.create_account_layout.addWidget(self.account_type_label)
-        self.create_account_layout.addWidget(self.account_type_input)
-        self.create_account_layout.addWidget(self.create_account_button)
-
-        self.setLayout(self.create_account_layout)
+        self.create_account_button = QPushButton("Create Account", self)
+       self.create_account_button.clicked.connect(self.create_account_signal.emit)
+        
+        self.update_account_button = QPushButton("Update Account", self)
        
-        self.create_account_button.clicked.connect()
+        self.update_account_button.clicked.connect(self.update_account_signal.emit)
+        
+        self.delete_account_button = QPushButton("Delete Account", self)
+       self.delete_account_button.clicked.connect(self.delete_account_signal.emit)
+        
+
+
+
 
             def create_account(self):
         # Get account number and type from input fields
