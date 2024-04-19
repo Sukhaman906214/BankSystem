@@ -38,28 +38,15 @@ class AccountWindow(QWidget):
         self.update_account_button.clicked.connect(self.update_account_signal.emit)
         
         self.delete_account_button = QPushButton("Delete Account", self)
-       self.delete_account_button.clicked.connect(self.delete_account_signal.emit)
-        
+        self.delete_account_button.clicked.connect(self.delete_account_signal.emit)
 
-
-
-
-            def create_account(self):
-        # Get account number and type from input fields
-        account_number = self.account_number_input.text()
-        account_type = self.account_type_input.text()
-       
-   
-
-    
-
-       
-
-        
-
-
+        self.back_button = QPushButton("Back", self)
+        self.back_button.clicked.connect(self.go_back_to_main_menu)
+    def go_back_to_main_menu(self):
+        self.go_back.emit()
+        self.close()
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    window = AccountManagementApp()
+    window = AccountWindow()
     window.show()
     sys.exit(app.exec_())
